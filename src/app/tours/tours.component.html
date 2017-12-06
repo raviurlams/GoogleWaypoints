@@ -1,0 +1,39 @@
+<div class="container mt-20">
+  <div class="col-sm-12">
+    <div class="form-group col-sm-5">
+       <label for="from" class="block-label">From</label>
+      <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #searchFrom>
+    </div>
+    <div class="form-group col-sm-5">
+      <label for="to" class="block-label">To</label>
+      <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #searchTo>
+    </div>
+    <div class="col-sm-2">
+      <label for="empty" class="block-label col-sm-12">&nbsp;</label>
+      <input type="button" value="Add Marker" (click)="drawMarkerPoints()" class="btn btn-danger">
+    </div>
+  </div>
+  <div id="mapElement" #mapElement class="col-sm-12"></div>
+  <div class="col-sm-12" *ngIf="(pointsDataSource.length > 0)">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">From</th>
+          <th scope="col">To</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of pointsDataSource; let i = index">
+          <td>{{i}}</td>
+          <td>{{item['locationFromName']}}</td>
+          <td>{{item['locationToName']}}</td>
+          <td>
+            <input type="button" class="btn" value="Delete Marker" (click)="deleteItem(i)">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
